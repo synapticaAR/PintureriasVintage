@@ -1,7 +1,6 @@
-
 // ===== Datos y util =====
 const money = n => new Intl.NumberFormat('es-AR',{style:'currency',currency:'ARS',maximumFractionDigits:0}).format(n);
-const V = (typeof window.IMG_VER==='string' ? window.IMG_VER : 'v1');
+const V = (typeof window.IMG_VER==='string' ? window.IMG_VER : 'v2');
 const BASE = (typeof window.ASSETS_BASE==='string' ? window.ASSETS_BASE : './assets/products');
 const $ = s => document.querySelector(s);
 
