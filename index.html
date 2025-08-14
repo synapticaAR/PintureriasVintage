@@ -16,20 +16,32 @@
 <meta property="og:description" content="Pinturas, impermeabilizantes y más. 6 cuotas sin interés.">
 <meta property="og:image" content="icon-512.png">
 
-<!-- ===== Overrides rápidos para logos e imágenes (no toques styles.css si no querés) ===== -->
+<!-- ====== OVERRIDES ANTI-LOGOS GIGANTES ====== -->
 <style>
-  /* Slider: logos de marca a la derecha */
+  /* Slider */
+  .hero .slides{overflow:hidden}
+  .hero .content{position:relative;display:flex;align-items:center;justify-content:space-between;gap:min(3vw,24px)}
+  .hero .content>div:first-child{max-width:720px}
   .hero .content img.hero-brand{
-    display:block;width:auto;height:clamp(56px,10vw,120px);max-width:min(48vw,360px);object-fit:contain;
-    filter:drop-shadow(0 1px 2px rgba(0,0,0,.08));
+    position:absolute;right:clamp(8px,4vw,40px);bottom:clamp(8px,4vw,24px);
+    height:clamp(56px,9vw,120px) !important;width:auto !important;
+    max-width:min(48vw,360px);object-fit:contain;opacity:.9;
+    filter:drop-shadow(0 1px 2px rgba(0,0,0,.08));pointer-events:none;z-index:1
   }
-  /* Rail de marcas */
-  .rail.wrap{display:flex;align-items:center;flex-wrap:wrap;gap:20px;padding:8px 0;}
-  .brand-logo{height:26px;width:auto;object-fit:contain;opacity:.9}
-  /* Footer: medios de pago (eran enormes) */
+  @media (max-width: 760px){
+    .hero .content img.hero-brand{display:none !important} /* en móvil los oculto */
+  }
+
+  /* Tira de marcas */
+  .rail.wrap{display:flex;align-items:center;flex-wrap:wrap;gap:clamp(12px,2.8vw,24px);padding:8px 0}
+  .brand-logo{height:clamp(18px,2.2vw,26px) !important;width:auto !important;object-fit:contain;opacity:.9}
+
+  /* Footer: medios de pago (SVG antes gigantes) */
   .pay-rail{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
-  .pay-rail svg{height:32px;width:auto;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,.12)}
-  /* Fotos de producto siempre encuadradas */
+  .pay-rail svg{height:32px !important;width:auto !important;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,.12)}
+  @media (max-width:760px){.pay-rail svg{height:26px !important}}
+
+  /* Fotos de producto: encuadre consistente */
   .card .thumb{height:200px}
   .card .thumb picture,.card .thumb img{width:100%;height:100%;object-fit:contain}
 </style>
@@ -171,15 +183,12 @@
     <div class="copy">© 2025 Pinturerías Vintage — Envíos a todo el país</div>
   </footer>
 
-  <!-- MODAL + CARRITO + TOAST: tu app.js los maneja -->
-
-  <!-- Config: imágenes en raíz + SW + kill-switch de caché -->
+  <!-- Config: imágenes en raíz + SW + kill-cache -->
   <script>
-    window.IMG_VER = 'v11';
-    window.ASSETS_BASE = '.'; // raíz del repo (donde están p1-1.png, etc.)
+    window.IMG_VER = 'v12';
+    window.ASSETS_BASE = '.'; // raíz del repo (p1-1.png, etc.)
 
     (async () => {
-      // kill-switch: abrir con ?nocache borra SW y cachés
       if (location.search.includes('nocache')) {
         try {
           if ('caches' in window) {
@@ -195,10 +204,10 @@
         return;
       }
       if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('./sw.js?v=11').catch(()=>{});
+        navigator.serviceWorker.register('./sw.js?v=12').catch(()=>{});
       }
     })();
   </script>
-  <script src="app.js?v=11"></script>
+  <script src="app.js?v=12"></script>
 </body>
 </html>
