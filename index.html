@@ -155,7 +155,14 @@
   <div class="toast" id="toast" role="status" aria-live="polite">Agregado al carrito</div>
   <button class="fab" onclick="alert('Abrir WhatsApp de atención (demo)')">💬 WhatsApp</button>
 
-  <script>window.IMG_VER='v1';window.ASSETS_BASE='./assets/products';</script>
-  <script src="app.js"></script>
+  <!-- Config imágenes + registro SW (v2) -->
+  <script>
+    window.IMG_VER = 'v2';
+    window.ASSETS_BASE = './assets/products';
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('./sw.js?v=2').catch(()=>{});
+    }
+  </script>
+  <script src="app.js?v=2"></script>
 </body>
 </html>
